@@ -1,0 +1,41 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    <div class="span">
+        <img src="assets/img/logo_white.png" height="32" class="m-2">
+    </div>
+    <button *ngIf="!auth.globalData.login.value" mat-button class="menu-button"
+        routerLink="/register">
+        <mat-icon>how_to_reg</mat-icon>
+        <span>Register</span>
+    </button>
+
+    <button *ngIf="!auth.globalData.login.value" mat-button class="menu-button"
+        routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+    </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+        <app-client></app-client>
+
+        <app-nav-items></app-nav-items>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-footer></app-footer>

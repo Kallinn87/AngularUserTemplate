@@ -1,0 +1,77 @@
+<mat-divider *ngIf="authService.globalData.login.value"></mat-divider>
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 9}" routerLink="/profile">
+    <mat-icon>manage_accounts</mat-icon>
+    <span>Profile</span>
+</button>
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 10}" routerLink="/dashboard">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard</span>
+</button>
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 11}" routerLink="/my_jobs">
+    <mat-icon>receipt_long</mat-icon>
+    <span>My jobs</span>
+</button>
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 12}" routerLink="/messages">
+    <mat-icon>email</mat-icon>
+    <span>Messages</span>
+</button>
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 13}" routerLink="/notifications">
+    <mat-icon>notifications</mat-icon>
+    <span>Notifications</span>
+</button>
+<mat-divider *ngIf="authService.globalData.login.value"></mat-divider>
+<button mat-button class="menu-button" [ngClass]="{'active': step === 0}" routerLink="/">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+</button>
+<button mat-button class="menu-button" [ngClass]="{'active': step === 1}" routerLink="/jobs">
+    <mat-icon>work_history</mat-icon>
+    <span>Jobs</span>
+</button>
+<button mat-button class="menu-button" [ngClass]="{'active': step === 2}" routerLink="/contractors">
+    <mat-icon>engineering</mat-icon>
+    <span>Contractors</span>
+</button>
+<div *ngIf="authService.globalData.admin">
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" [ngClass]="{'active': step === 3}" [disabled]="!authService.globalData.login.value"
+        routerLink="/users">
+        <mat-icon><span class="material-symbols-outlined">
+                group
+            </span></mat-icon>
+        <span>Users</span>
+    </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<button *ngIf="!authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 4}"
+    routerLink="/register">
+    <mat-icon>how_to_reg</mat-icon>
+    <span>Register</span>
+</button>
+
+<button *ngIf="!authService.globalData.login.value" mat-button class="menu-button" [ngClass]="{'active': step === 5}"
+    routerLink="/login">
+    <mat-icon>login</mat-icon>
+    <span>Login</span>
+</button>
+
+<button *ngIf="authService.globalData.login.value" mat-button class="menu-button" (click)=logout() routerLink="/login">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+</button>
+
+<mat-divider></mat-divider>
+
+<button mat-button class="menu-button" [ngClass]="{'active': step === 6}" routerLink="/help">
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+</button>
+
+<button mat-button class="menu-button" [ngClass]="{'active': step === 7}" routerLink="/settings">
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+</button>
+
+

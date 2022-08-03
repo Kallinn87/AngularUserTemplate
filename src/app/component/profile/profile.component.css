@@ -1,0 +1,77 @@
+.mat-label{
+  color: darkblue;
+  font-size: 1.2rem;
+}
+
+.mat-one {
+  width: 94%;
+}
+
+.mat-two {
+  width: 46.7%;
+}
+
+.mat-three {
+  width: 30.9%;
+}
+
+.content {
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image_feald {
+  margin-top: 16px;
+  width: 250px;
+}
+
+.avatar {
+  margin-top: 16px;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+
+.upload {
+  margin-top: 16px;
+  width: 140px;
+  height: 35px;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+.icon-display {
+  transform: scale(4);
+}
+
+.verified {
+  font-size: 16px;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.contractor {
+  font-size: 24px;
+  opacity: 0.9;
+  text-decoration: none;
+}
+

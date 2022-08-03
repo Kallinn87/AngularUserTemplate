@@ -1,0 +1,15 @@
+<div class="my_grid">
+    <mat-card class="example-card my-container mt-4" *ngFor="let manual of manuals; index as i">
+        <mat-card-header>
+          <mat-card-title>{{manual.title}}</mat-card-title>
+          <mat-card-subtitle class="text-success">{{manual.subTitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="card-img-top p-2" src="assets/img/{{manual.image}}">
+        <mat-card-content>
+          <p>{{manual.text}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="btn btn-outline-primary mx-2" (click)="goToLink(manual.url)">READ</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>

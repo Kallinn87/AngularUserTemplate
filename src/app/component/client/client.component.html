@@ -1,0 +1,6 @@
+<div *ngIf="authService.globalData.login.value">
+    <img class="avatar mat-elevation-z8"
+        src={{authService.globalData.user.photoURL}}/>
+    <p class="name">{{authService.globalData.user.displayName}}</p>
+    <p class="designation">{{authService.globalData.user.email}}</p>
+</div>

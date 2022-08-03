@@ -1,0 +1,96 @@
+<div class="grid">
+    <!--Left side-->
+    <div id="bg3" class="column effect-hover" routerLink="/post_a_job">
+        <div class="content">
+            <h2>Find a <span>contractor</span></h2>
+            <h3>Post your job for free and our contractors will contact you.</h3>
+            <p>Post a Job - It’s Free</p>
+        </div>
+    </div>
+    <!--Right side-->
+    <div id="bg2" class="column effect-hover" routerLink="/contractors">
+        <div class="content">
+            <h2>I am a <span>contractor</span></h2>
+            <h3>Verkstund helps you fill up your contract book.</h3>
+            <p>Find Jobs</p>
+        </div>
+    </div>
+</div>
+
+<section class="article-list my-4">
+    <div class="container">
+        <h2 class="text-center">Latest Projects & Jobs</h2>
+        <div class="row articles">
+            <div class="col-sm-6 col-md-4 item" *ngFor="let project of projects; index as i">
+                <a href="#"><img class="img-fluid" src={{project.image}}></a>
+                <h3 class="name">{{project.title}}</h3>
+                <p class="description">{{project.text}}</p>
+            </div>
+            <div class="col-sm-6 col-md-4 item">
+                <a href="#" class="btn border-btn-organ">Browse all Jobs</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-center bg-light features-icons my-4">
+    <div class="container">
+        <h4 class="text-center">Find the right contractor for any job around the house.</h4>
+        <h5 class="text-center">...simple, stress-free and 100% free of charge!</h5>
+
+        <div class="row mt-4">
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="material-icons m-auto text-primary">post_add</i>
+                    </div>
+                    <h5>Pos a jobt</h5>
+                    <p class="lead mb-0">Post your job in a few easy steps for free.</p>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i
+                            class="material-icons m-auto text-primary">contact_mail</i></div>
+                    <h5>Receive bids</h5>
+                    <p class="lead mb-0">Receive non-binding bids from qualified contractors.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="material-icons m-auto text-primary">handshake</i>
+                    </div>
+                    <h5>Select</h5>
+                    <p class="lead mb-0">Choose the best bid and have the work done!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-organ">Poast a Job now</a>
+    </div>
+</section>
+
+<section class="text-center bg-light testimonials">
+    <div class="container">
+        <h2 class="mb-5">What people are saying...</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="../../../assets/img/testimonials-1.jpg" />
+                    <h5>Margaret E.</h5>
+                    <p class="font-weight-light mb-0">&quot;This is fantastic! Thanks so much guys!&quot;</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="../../../assets/img/testimonials-2.jpg" />
+                    <h5>Fred S.</h5>
+                    <p class="font-weight-light mb-0">&quot;Bootstrap is amazing. I&#39;ve been using it to create lots of super nice landing pages.&quot;</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="../../../assets/img/testimonials-3.jpg" />
+                    <h5>Sarah W.</h5>
+                    <p class="font-weight-light mb-0">&quot;Thanks so much for making these free resources available to us!&quot;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

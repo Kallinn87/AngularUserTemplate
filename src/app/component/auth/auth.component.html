@@ -1,0 +1,53 @@
+<div class="row content">
+    <section class="register-photo">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            <form >
+                <h2 *ngIf="authType == 'register'" class="text-center"><strong>Create</strong> an account.</h2>
+                <h2 *ngIf="authType != 'register'" class="text-center"><strong>Login</strong></h2>
+                <mat-form-field class="w-100" *ngIf="authType == 'register'">
+                    <mat-label>First & last name</mat-label>
+                    <input matInput type="text" name="s" #clientName="ngModel"
+                        [ngClass]="{'is-invalid':clientName.errors && clientName.touched}" [(ngModel)]="username"
+                        required>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput name="email" #clientEmail="ngModel"
+                        [ngClass]="{'is-invalid':clientEmail.errors && clientEmail.touched}" [(ngModel)]="email"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" name="password" #clientPassword="ngModel"
+                        [ngClass]="{'is-invalid':clientPassword.errors && clientPassword.touched}"
+                        [(ngModel)]="password" minlength="8" #input required>
+                    <button mat-icon-button type='button' matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="mb-3">
+                    <div *ngIf="authType != 'register'" class="mt-1">
+                        <a class="already" style="cursor: pointer;" (click)="forgotPassword()">Forgot your email or Password</a>
+                    </div>
+                    <input type="submit" value="{{authType == 'register'?'Sign Up':'Sign in'}}"
+                        class="btn btn-primary d-block w-100" (click)="onSubmit()">
+                </div>
+                <button class="btn btn-outline-secondary col-12" (click)="loginWithGoogle()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="image" width="24"
+                        height="24" class="d-inline-block align-top mr-2">
+                    {{authType == 'register'?"Register":"Sign in"}} with Google</button>
+
+                <div class="mt-2">
+                    <a class="already" [routerLink]="['/login']" *ngIf="authType == 'register'">You already have an account? Login here.</a>
+                    <a class="already" [routerLink]="['/register']" *ngIf="authType == 'login'">You need an account? Create one here.</a>
+                </div>
+
+            </form>
+        </div>
+        <div *ngIf="message" class="alert mt-4" [ngClass]="message_type" role="alert">
+            {{errorMessage}}
+        </div>
+    </section>
+</div>

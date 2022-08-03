@@ -1,0 +1,215 @@
+<div class="content">
+    <div class="d-flex justify-content-between">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                [checked]="businessCard" (click)="view(0)">
+            <label class="btn btn-outline-primary" for="btnradio1">Profile edit</label>
+            
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                [checked]="contracterProfile" (click)="view(1)">
+            <label class="btn btn-outline-primary" for="btnradio2">Public Profile</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" [checked]="payment"
+                (click)="view(2)">
+            <label class="btn btn-outline-primary" for="btnradio3">Payment methods</label>
+        </div>
+    </div>
+</div>
+<section *ngIf="businessCard" class="top mx-auto p-4" style="max-width: 800px;">
+    <mat-accordion class="example-headers-align mb-4 mx-auto" style="max-width: 600px;">
+        <mat-expansion-panel [expanded]="true" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h6 class="mt-2">Business card</h6>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p></p>
+                    <mat-icon>edit</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form #clientForm="ngForm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <img class="avatar mat-elevation-z8 mx-1" src={{this.globalData.user.photoURL}}
+                                *ngIf="!url" />
+                            <img class="avatar mat-elevation-z8 mx-1" [src]="url" *ngIf="url" />
+
+                            <mat-form-field class="image_feald">
+                                <ngx-mat-file-input name="input_img" [(ngModel)]="this.img_path"
+                                    placeholder="Set new profile image" (change)="selectFile($event)">
+                                </ngx-mat-file-input>
+                                <mat-icon matSuffix>folder</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Name</mat-label>
+                                    <input matInput name="name" #addedName="ngModel"
+                                        value="{{this.globalData.user.displayName}}"
+                                        [ngClass]="{'is-invalid':addedName.errors && addedName.touched}"
+                                        [(ngModel)]="this.globalData.user.displayName" minlength="2" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Title</mat-label>
+                                    <input matInput name="farm" [(ngModel)]="this.globalData.user.job_title">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Company</mat-label>
+                                    <input matInput [(ngModel)]="this.globalData.user.company" name="company">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Phone number</mat-label>
+                                    <input matInput [(ngModel)]="this.globalData.user.address" name="address">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Email</mat-label>
+                                    <input [readonly]="true" [ngClass]="(!globalData.user.emailVerified? 'text-danger' : 'text-success')" matInput [(ngModel)]="this.globalData.user.email" name="email">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <button *ngIf="!globalData.user.emailVerified" class="mx-3" mat-raised-button
+                                    matTooltip="Verify your email." matTooltipPosition="after"
+                                    [matTooltipHideDelay]="2000" (click)="verify()" class="w-25">
+                                    Verify
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf=false class="text-dark text-center mb-4">
+                        <span [ngClass]="(!globalData.user.contractor? ['text-danger', 'verified'] : ['text-success', 'contractor'])">
+                            {{!globalData.user.contractor? "Not a ":"Valid "}} contractor.</span>
+                        <button *ngIf="!globalData.user.contractor" type="button" 
+                        [ngClass]="(globalData.user.contractor? 'btn-danger' : 'btn-outline-success' )"
+                        class="mx-3 btn" 
+                        (click)="registerAsContractor()">
+                            {{ globalData.user.contractor ? 'Quit as a contractor' : 'Register as a contractor' }}</button>
+                    </div>
+                    <button type="submit" [disabled]="!(clientForm.valid && clientForm.dirty)" mat-raised-button
+                        color="primary" class="w-100" (click)="onSubmit()">SAVE</button>
+                </div>
+            </form>
+            <div *ngIf="message" class="alert mt-4" [ngClass]="message_type" role="alert">
+                {{errorMessage}}
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
+
+<section *ngIf="businessCard" class="top mx-auto p-4" style="max-width: 800px;">
+    <mat-accordion class="example-headers-align mb-4 mx-auto" style="max-width: 600px;">
+        <mat-expansion-panel [expanded]="true" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h6 class="mt-2">About</h6>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p></p>
+                    <mat-icon>edit</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form #clientForm="ngForm">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-flex">
+                            <mat-form-field class="w-100">
+                                <mat-label class="mat-label">About</mat-label>
+                                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [(ngModel)]="this.globalData.user.about"
+                                    name="about"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngIf=false class="text-dark text-center mb-4">
+                        <span [ngClass]="(!globalData.user.contractor? ['text-danger', 'verified'] : ['text-success', 'contractor'])">
+                            {{!globalData.user.contractor? "Not a ":"Valid "}} contractor.</span>
+                        <button *ngIf="!globalData.user.contractor" type="button" 
+                        [ngClass]="(globalData.user.contractor? 'btn-danger' : 'btn-outline-success' )"
+                        class="mx-3 btn" 
+                        (click)="registerAsContractor()">
+                            {{ globalData.user.contractor ? 'Quit as a contractor' : 'Register as a contractor' }}</button>
+                    </div>
+                    <button type="submit" [disabled]="!(clientForm.valid && clientForm.dirty)" mat-raised-button
+                        color="primary" class="w-100" (click)="onSubmit()">SAVE</button>
+                </div>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
+
+<section *ngIf="businessCard" class="top mx-auto p-4" style="max-width: 800px;">
+    <mat-accordion class="example-headers-align mb-4 mx-auto" style="max-width: 600px;">
+        <mat-expansion-panel [expanded]="true" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h6 class="mt-2">Location</h6>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p></p>
+                    <mat-icon>edit</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form #clientForm="ngForm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Country</mat-label>
+                                    <input matInput [(ngModel)]="this.globalData.user.country" name="country">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">City</mat-label>
+                                    <input matInput [(ngModel)]="this.globalData.user.city" name="city">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label class="mat-label">Address</mat-label>
+                                    <input matInput [(ngModel)]="this.globalData.user.address" name="address">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf=false class="text-dark text-center mb-4">
+                        <span [ngClass]="(!globalData.user.contractor? ['text-danger', 'verified'] : ['text-success', 'contractor'])">
+                            {{!globalData.user.contractor? "Not a ":"Valid "}} contractor.</span>
+                        <button *ngIf="!globalData.user.contractor" type="button" 
+                        [ngClass]="(globalData.user.contractor? 'btn-danger' : 'btn-outline-success' )"
+                        class="mx-3 btn" 
+                        (click)="registerAsContractor()">
+                            {{ globalData.user.contractor ? 'Quit as a contractor' : 'Register as a contractor' }}</button>
+                    </div>
+                    <button type="submit" [disabled]="!(clientForm.valid && clientForm.dirty)" mat-raised-button
+                        color="primary" class="w-100" (click)="onSubmit()">SAVE</button>
+                </div>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>

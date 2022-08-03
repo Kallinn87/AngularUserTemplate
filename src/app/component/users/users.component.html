@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between mx-4 mt-2">
+    <h2 class="mx-4 my-2">Users</h2>
+</div>
+<div *ngIf="message" class="alert mb-1 mx-2" [ngClass]="message_type" role="alert">
+    {{errorMessage}}
+</div>
+
+<div class="row content mx-auto " style="max-width: 400px;">
+    <mat-card class="example-card my-2" *ngFor="let user of users; index as i">
+        <mat-card-title-group>
+            <mat-card-title>{{(i + 1)}}: {{user.data.name === null ? '':(user.data.name)}}</mat-card-title>
+            <mat-card-subtitle>{{user.id}}</mat-card-subtitle>
+            <!--<img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >-->
+        </mat-card-title-group>
+        <mat-card-content>
+           <div>{{user.data.email}}</div> 
+           <div>SmartFlows : {{user.data.smartflows === undefined ? '':(user.data.smartflows.length)}}</div>
+        </mat-card-content>
+    </mat-card>
+</div>
